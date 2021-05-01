@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "636629660701",
+    "project_id": "my-perception",
+    "storage_bucket": "my-perception.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:636629660701:android:51e45bd307bd11a3d842f4",
+        "android_client_info": {
+          "package_name": "com.cbcds.myperception"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "636629660701-jtksincd8oti19qtb9dv62eulup7vapf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cbcds.myperception",
+            "certificate_hash": "02ac997faebba1ce7d07ae95548e72c9b8337cc0"
+          }
+        },
+        {
+          "client_id": "636629660701-n9fqd1u89qdk92mivq438pfarb7cpa02.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLQRsN49b4_t3Peh2WJpDeufYaRNY2p6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "636629660701-n9fqd1u89qdk92mivq438pfarb7cpa02.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
