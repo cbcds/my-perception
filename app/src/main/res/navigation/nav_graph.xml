@@ -9,7 +9,11 @@
         android:id="@+id/tab_auth"
         android:name="com.cbcds.myperception.screens.AuthFragment"
         android:label="fragment_auth"
-        tools:layout="@layout/fragment_auth" />
+        tools:layout="@layout/fragment_auth">
+        <action
+            android:id="@+id/action_tab_auth_to_tab_global_stats"
+            app:destination="@id/tab_global_stats" />
+    </fragment>
     <fragment
         android:id="@+id/tab_diary"
         android:name="com.cbcds.myperception.screens.DiaryFragment"
@@ -19,7 +23,11 @@
         android:id="@+id/tab_global_stats"
         android:name="com.cbcds.myperception.screens.GlobalStatsFragment"
         android:label="fragment_global_stats"
-        tools:layout="@layout/fragment_global_stats" />
+        tools:layout="@layout/fragment_global_stats" >
+        <action
+            android:id="@+id/action_tab_global_stats_to_tab_auth"
+            app:destination="@id/tab_auth" />
+    </fragment>
     <fragment
         android:id="@+id/tab_my_stats"
         android:name="com.cbcds.myperception.screens.MyStatsFragment"

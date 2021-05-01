@@ -5,4 +5,8 @@
     <string name="global_stats">Global stats</string>
     <string name="my_stats">My stats</string>
     <string name="diary">Diary</string>
+
+    <!-- Authorization -->
+    <string name="sign_in">Sign in</string>
+    <string name="sign_out">Sign out</string>
 </resources>
