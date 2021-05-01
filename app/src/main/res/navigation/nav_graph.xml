@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/tab_diary">
+
+    <fragment
+        android:id="@+id/tab_auth"
+        android:name="com.cbcds.myperception.screens.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth" />
+    <fragment
+        android:id="@+id/tab_diary"
+        android:name="com.cbcds.myperception.screens.DiaryFragment"
+        android:label="fragment_diary"
+        tools:layout="@layout/fragment_diary" />
+    <fragment
+        android:id="@+id/tab_global_stats"
+        android:name="com.cbcds.myperception.screens.GlobalStatsFragment"
+        android:label="fragment_global_stats"
+        tools:layout="@layout/fragment_global_stats" />
+    <fragment
+        android:id="@+id/tab_my_stats"
+        android:name="com.cbcds.myperception.screens.MyStatsFragment"
+        android:label="fragment_my_stats"
+        tools:layout="@layout/fragment_my_stats" />
+</navigation>

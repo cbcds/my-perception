@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">My perception</string>
+    <string name="app_name">My Perception</string>
+
+    <!-- Tab labels -->
+    <string name="global_stats">Global stats</string>
+    <string name="my_stats">My stats</string>
+    <string name="diary">Diary</string>
 </resources>
