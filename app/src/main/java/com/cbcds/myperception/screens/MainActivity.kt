@@ -1,8 +1,12 @@
 package com.cbcds.myperception.screens
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -12,8 +16,9 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.cbcds.myperception.R
-import com.cbcds.myperception.model.UserViewModel
+import com.cbcds.myperception.models.UserViewModel
 import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.IdpResponse
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -102,8 +107,9 @@ class MainActivity : AppCompatActivity() {
         AuthUI.getInstance().signOut(this)
     }
 
-    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        Log.d("Aaa", "Here")
 
         when (requestCode) {
             RC_SIGN_IN -> {
@@ -111,9 +117,9 @@ class MainActivity : AppCompatActivity() {
                 if (resultCode == Activity.RESULT_OK) {
                     Toast.makeText(this, "Signed in", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, response.toString(), Toast.LENGTH_LONG).show()
                 }
             }
         }
-    }*/
+    }
 }

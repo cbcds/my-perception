@@ -1,4 +1,4 @@
-package com.cbcds.myperception.model
+package com.cbcds.myperception.models
 
 import androidx.lifecycle.LiveData
 import com.google.firebase.auth.FirebaseAuth

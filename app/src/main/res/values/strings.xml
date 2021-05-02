@@ -18,6 +18,11 @@
 
     <!-- DiaryFragment -->
     <string name="action_bar_title_diary">Diary of emotions</string>
+    <string name="content_descr_add_emotion">Add emotion</string>
+
+    <!-- AddEmotionRecordFragment -->
+    <string name="action_bar_title_new_emotion">New emotion</string>
+    <string name="save">Save</string>
 
     <!-- MyStatsFragment -->
     <string name="action_bar_title_my_stats">My statistics</string>

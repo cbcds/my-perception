@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.cbcds.myperception.R
 import com.cbcds.myperception.databinding.FragmentAuthBinding
-import com.cbcds.myperception.model.UserViewModel
+import com.cbcds.myperception.models.UserViewModel
 
 class AuthFragment : Fragment() {
     private lateinit var binding: FragmentAuthBinding
@@ -27,7 +27,7 @@ class AuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSignIn.setOnClickListener { (activity as MainActivity).launchSignInFlow() }
+        binding.btnSignIn.setOnClickListener { (activity as MainActivity).launchSignInFlow() }
         userViewModel.authState.observe(viewLifecycleOwner) { authState ->
             if (authState == UserViewModel.AuthState.AUTHENTICATED) {
                 findNavController().navigate(R.id.action_tab_auth_to_tab_global_stats)

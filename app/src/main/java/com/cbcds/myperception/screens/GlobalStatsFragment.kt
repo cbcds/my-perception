@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.cbcds.myperception.R
 import com.cbcds.myperception.databinding.FragmentGlobalStatsBinding
-import com.cbcds.myperception.model.UserViewModel
+import com.cbcds.myperception.models.UserViewModel
 
 class GlobalStatsFragment : Fragment() {
     private lateinit var binding: FragmentGlobalStatsBinding
