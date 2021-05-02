@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/tab_auth"
         android:name="com.cbcds.myperception.screens.AuthFragment"
-        android:label="fragment_auth"
+        android:label="@string/action_bar_title_auth"
         tools:layout="@layout/fragment_auth">
         <action
             android:id="@+id/action_tab_auth_to_tab_global_stats"
@@ -17,13 +17,13 @@
     <fragment
         android:id="@+id/tab_diary"
         android:name="com.cbcds.myperception.screens.DiaryFragment"
-        android:label="fragment_diary"
+        android:label="@string/action_bar_title_diary"
         tools:layout="@layout/fragment_diary" />
     <fragment
         android:id="@+id/tab_global_stats"
         android:name="com.cbcds.myperception.screens.GlobalStatsFragment"
-        android:label="fragment_global_stats"
-        tools:layout="@layout/fragment_global_stats" >
+        android:label="@string/action_bar_title_global_stats"
+        tools:layout="@layout/fragment_global_stats">
         <action
             android:id="@+id/action_tab_global_stats_to_tab_auth"
             app:destination="@id/tab_auth" />
@@ -31,6 +31,6 @@
     <fragment
         android:id="@+id/tab_my_stats"
         android:name="com.cbcds.myperception.screens.MyStatsFragment"
-        android:label="fragment_my_stats"
+        android:label="@string/action_bar_title_my_stats"
         tools:layout="@layout/fragment_my_stats" />
 </navigation>

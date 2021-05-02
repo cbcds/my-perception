@@ -9,4 +9,16 @@
     <!-- Authorization -->
     <string name="sign_in">Sign in</string>
     <string name="sign_out">Sign out</string>
+
+    <!-- AuthFragment -->
+    <string name="action_bar_title_auth">Authorization</string>
+
+    <!-- GlobalStatsFragment -->
+    <string name="action_bar_title_global_stats">Global statistics</string>
+
+    <!-- DiaryFragment -->
+    <string name="action_bar_title_diary">Diary of emotions</string>
+
+    <!-- MyStatsFragment -->
+    <string name="action_bar_title_my_stats">My statistics</string>
 </resources>
