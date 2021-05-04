@@ -5,5 +5,5 @@ import com.cbcds.myperception.database.EmotionsDatabase
 
 class EmotionsApplication : Application() {
     private val database by lazy { EmotionsDatabase.getDatabase(this) }
-    val repository by lazy { Repository(database.diaryDao()) }
+    val repository by lazy { Repository(database.diaryDao(), database.emotionsDao()) }
 }

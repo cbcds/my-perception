@@ -23,6 +23,7 @@ class DiaryAdapter :
 
         fun bind(record: EmotionRecord) {
             binding.tvEmotionName.text = record.name
+            binding.tvEmotionDetails.text = record.details
         }
 
         companion object {

@@ -6,15 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".screens.AddEmotionFragment">
 
-    <EditText
-        android:id="@+id/et_emotion_name"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_margin="16dp"
-        android:hint="Emotion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <Spinner
+        android:id="@+id/spinner_emotion_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_select_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:text="@string/hint_date_picker"
+        app:layout_constraintBottom_toBottomOf="@id/spinner_emotion_name"
+        app:layout_constraintLeft_toRightOf="@id/spinner_emotion_name"
+        app:layout_constraintTop_toTopOf="@id/spinner_emotion_name" />
+
+    <EditText
+        android:id="@+id/et_emotion_details"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:hint="@string/hint_emotion_details"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@id/btn_save_emotion"
+        app:layout_constraintTop_toBottomOf="@id/spinner_emotion_name" />
 
     <Button
         android:id="@+id/btn_save_emotion"
