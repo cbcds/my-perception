@@ -6,9 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 // TODO: delete exportSchema after finishing database implementation
-@Database(entities = [EmotionRecord::class], version = 1, exportSchema = false)
+@Database(entities = [EmotionRecord::class, Emotion::class], version = 1, exportSchema = false)
 abstract class EmotionsDatabase : RoomDatabase() {
     abstract fun diaryDao(): DiaryDao
+    abstract fun emotionsDao(): EmotionsDao
 
     companion object {
         @Volatile
@@ -20,7 +21,7 @@ abstract class EmotionsDatabase : RoomDatabase() {
                     context.applicationContext,
                     EmotionsDatabase::class.java,
                     "emotions-database"
-                ).build()
+                ).createFromAsset("emotions.db").build()
                 INSTANCE = instance
                 instance
             }
