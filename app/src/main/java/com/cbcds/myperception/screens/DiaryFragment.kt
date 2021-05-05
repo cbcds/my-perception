@@ -24,15 +24,6 @@ class DiaryFragment : Fragment() {
         DiaryViewModelFactory((activity?.application as EmotionsApplication).repository)
     }
 
-   /* override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        setFragmentResultListener(AddEmotionFragment.REQUEST_KEY) { _, bundle ->
-            val newRecord = bundle.get(AddEmotionFragment.BUNDLE_KEY) as EmotionRecord
-            viewModel.insert(newRecord)
-        }
-    }*/
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

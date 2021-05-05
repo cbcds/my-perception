@@ -15,6 +15,8 @@ import com.cbcds.myperception.database.EmotionRecord
 import com.cbcds.myperception.databinding.FragmentAddEmotionBinding
 import com.cbcds.myperception.models.DiaryViewModel
 import com.cbcds.myperception.utils.DateUtils
+import com.cbcds.myperception.utils.DateUtils.Companion.format
+import java.util.*
 
 class AddEmotionFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private lateinit var binding: FragmentAddEmotionBinding
@@ -41,13 +43,14 @@ class AddEmotionFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             binding.spinnerEmotionName.adapter = adapter
         }
 
-        binding.btnSelectDate.setOnClickListener {
+        binding.tvSelectDate.text = Calendar.getInstance().format()
+        binding.tvSelectDate.setOnClickListener {
             DatePickerFragment(this).show(parentFragmentManager, "datePicker")
         }
 
         binding.btnSaveEmotion.setOnClickListener {
             val name = binding.spinnerEmotionName.selectedItem.toString()
-            val date = DateUtils.toDate(binding.btnSelectDate.text.toString())
+            val date = DateUtils.stringToDate(binding.tvSelectDate.text.toString())
             val details = binding.etEmotionDetails.text.toString()
             viewModel.insert(EmotionRecord(name, date, details))
             findNavController().navigateUp()
@@ -55,6 +58,6 @@ class AddEmotionFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        binding.btnSelectDate.text = DateUtils.toString(year, month, dayOfMonth)
+        binding.tvSelectDate.text = DateUtils.dateToString(year, month, dayOfMonth)
     }
 }
