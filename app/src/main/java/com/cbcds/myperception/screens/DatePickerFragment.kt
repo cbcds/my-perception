@@ -14,12 +14,15 @@ class DatePickerFragment(private val onDateSetListener: DatePickerDialog.OnDateS
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        return DatePickerDialog(
+        val datePickerDialog = DatePickerDialog(
             requireContext(),
             onDateSetListener,
             year,
             month,
             day
         )
+        datePickerDialog.datePicker.maxDate = calendar.timeInMillis
+
+        return datePickerDialog
     }
 }

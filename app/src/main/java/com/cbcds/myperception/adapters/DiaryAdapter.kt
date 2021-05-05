@@ -5,42 +5,68 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.cbcds.myperception.database.EmotionRecord
+import androidx.viewbinding.ViewBinding
+import com.cbcds.myperception.databinding.ItemDateBinding
 import com.cbcds.myperception.databinding.ItemEmotionRecordBinding
+import com.cbcds.myperception.utils.DateUtils.Companion.format
+import com.cbcds.myperception.views.DiaryListItem
 
 class DiaryAdapter :
-    ListAdapter<EmotionRecord, DiaryAdapter.EmotionRecordViewHolder>(EmotionRecordComparator()) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmotionRecordViewHolder {
-        return EmotionRecordViewHolder.create(parent)
+    ListAdapter<DiaryListItem, DiaryAdapter.DiaryItemViewHolder>(DiaryItemComparator()) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiaryItemViewHolder {
+        return DiaryItemViewHolder.create(parent, viewType)
     }
 
-    override fun onBindViewHolder(holder: EmotionRecordViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DiaryItemViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    class EmotionRecordViewHolder(private var binding: ItemEmotionRecordBinding) :
+    override fun getItemViewType(position: Int): Int {
+        return getItem(position).type
+    }
+
+    class DiaryItemViewHolder(private var binding: ViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(record: EmotionRecord) {
-            binding.tvEmotionName.text = record.name
-            binding.tvEmotionDetails.text = record.details
+        fun bind(item: DiaryListItem) {
+            when (item) {
+                is DiaryListItem.DateItem ->
+                    with(binding as ItemDateBinding) {
+                        tvDate.text = item.date.format()
+                    }
+                is DiaryListItem.EmotionRecordItem ->
+                    with(binding as ItemEmotionRecordBinding) {
+                        tvEmotionName.text = item.record.name
+                        tvEmotionDetails.text = item.record.details
+                    }
+            }
         }
 
         companion object {
-            fun create(parent: ViewGroup): EmotionRecordViewHolder {
-                val binding = ItemEmotionRecordBinding.inflate(LayoutInflater.from(parent.context))
-                return EmotionRecordViewHolder(binding)
+            fun create(parent: ViewGroup, viewType: Int): DiaryItemViewHolder {
+                return when (viewType) {
+                    DiaryListItem.TYPE_DATE -> {
+                        val binding = ItemDateBinding.inflate(LayoutInflater.from(parent.context))
+                        DiaryItemViewHolder(binding)
+                    }
+                    DiaryListItem.TYPE_EMOTION_RECORD -> {
+                        val binding =
+                            ItemEmotionRecordBinding.inflate(LayoutInflater.from(parent.context))
+                        DiaryItemViewHolder(binding)
+                    }
+                    else -> throw IllegalArgumentException("Unknown viewType: $viewType")
+                }
             }
         }
     }
+}
 
-    class EmotionRecordComparator : DiffUtil.ItemCallback<EmotionRecord>() {
-        override fun areItemsTheSame(oldItem: EmotionRecord, newItem: EmotionRecord): Boolean {
-            return oldItem == newItem
-        }
+class DiaryItemComparator : DiffUtil.ItemCallback<DiaryListItem>() {
+    override fun areItemsTheSame(oldItem: DiaryListItem, newItem: DiaryListItem): Boolean {
+        return false
+    }
 
-        override fun areContentsTheSame(oldItem: EmotionRecord, newItem: EmotionRecord): Boolean {
-            return oldItem.name == newItem.name
-        }
+    override fun areContentsTheSame(oldItem: DiaryListItem, newItem: DiaryListItem): Boolean {
+        return false
     }
 }

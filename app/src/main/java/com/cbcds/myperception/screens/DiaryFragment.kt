@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.cbcds.myperception.EmotionsApplication
 import com.cbcds.myperception.R
@@ -33,6 +34,7 @@ class DiaryFragment : Fragment() {
 
         adapter = DiaryAdapter()
         binding.diary.adapter = adapter
+        binding.diary.setHasFixedSize(true)
 
         return binding.root
     }
@@ -40,8 +42,14 @@ class DiaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.allRecords.observe(viewLifecycleOwner) { records ->
-            records?.let { adapter.submitList(it) }
+        viewModel.allRecords.observe(viewLifecycleOwner) {
+            //if (it.size != viewModel.oldRecordsListSize) {
+                lifecycleScope.launchWhenCreated { viewModel.preprocessListItems() }
+               // viewModel.oldRecordsListSize = it.size
+           // }
+        }
+        viewModel.listItems.observe(viewLifecycleOwner) { listItems ->
+            listItems?.let { adapter.submitList(listItems) }
         }
 
         binding.fabAddEmotion.setOnClickListener {

@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DiaryDao {
-    @Query("SELECT * FROM diary")
+    @Query("SELECT * FROM diary ORDER BY date DESC")
     fun getAll(): Flow<List<EmotionRecord>>
 
     @Insert

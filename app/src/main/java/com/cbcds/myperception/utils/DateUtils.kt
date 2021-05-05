@@ -12,6 +12,10 @@ class DateUtils {
             return DateFormat.format(FORMAT, this).toString()
         }
 
+        fun Date.format(): String {
+            return DateFormat.format(FORMAT, this).toString()
+        }
+
         fun dateToString(year: Int, month: Int, dayOfMonth: Int): String {
             val calendar = Calendar.getInstance()
             with(calendar) {
