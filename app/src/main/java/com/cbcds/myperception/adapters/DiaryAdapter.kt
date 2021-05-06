@@ -63,10 +63,23 @@ class DiaryAdapter :
 
 class DiaryItemComparator : DiffUtil.ItemCallback<DiaryListItem>() {
     override fun areItemsTheSame(oldItem: DiaryListItem, newItem: DiaryListItem): Boolean {
-        return false
+        if (oldItem.type != newItem.type) {
+            return false
+        }
+
+        return when (oldItem) {
+            is DiaryListItem.DateItem ->
+                oldItem.date == (newItem as DiaryListItem.DateItem).date
+            is DiaryListItem.EmotionRecordItem ->
+                oldItem.record.id == (newItem as DiaryListItem.EmotionRecordItem).record.id
+        }
     }
 
     override fun areContentsTheSame(oldItem: DiaryListItem, newItem: DiaryListItem): Boolean {
-        return false
+        return when (oldItem) {
+            is DiaryListItem.DateItem -> true
+            is DiaryListItem.EmotionRecordItem ->
+                oldItem.record == (newItem as DiaryListItem.EmotionRecordItem).record
+        }
     }
 }

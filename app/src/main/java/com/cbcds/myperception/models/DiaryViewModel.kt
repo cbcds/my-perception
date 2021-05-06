@@ -4,33 +4,25 @@ import androidx.lifecycle.*
 import com.cbcds.myperception.Repository
 import com.cbcds.myperception.database.EmotionRecord
 import com.cbcds.myperception.views.DiaryListItem
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class DiaryViewModel(private val repository: Repository) : ViewModel() {
     val allRecords = repository.allEmotionRecords.asLiveData()
-    //var oldRecordsListSize = allRecords.value?.size
 
     private val _listItems = MutableLiveData<List<DiaryListItem>>()
     val listItems: LiveData<List<DiaryListItem>> = _listItems
 
-    suspend fun preprocessListItems() {
-        with(viewModelScope) {
-            val listDeferred = async {
-                withContext(Dispatchers.IO) {
-                    val list = mutableListOf<DiaryListItem>()
-                    allRecords.value?.groupBy(EmotionRecord::date)?.forEach { (date, records) ->
-                        list += DiaryListItem.DateItem(date)
-                        list.addAll(records.map { DiaryListItem.EmotionRecordItem(it) })
-                    }
-                    return@withContext list
-                }
+    fun preprocessListItems() {
+        val list = mutableListOf<DiaryListItem>()
+        allRecords.value?.groupBy(EmotionRecord::date)
+            ?.mapValues { (_, value) -> value.asReversed() }
+            ?.forEach { (date, records) ->
+                list += DiaryListItem.DateItem(date)
+                list.addAll(records.map { DiaryListItem.EmotionRecordItem(it) })
             }
-            launch { _listItems.value = listDeferred.await() }
-        }
+        _listItems.value = list
     }
+
 
     fun insert(record: EmotionRecord) {
         viewModelScope.launch {

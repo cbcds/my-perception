@@ -43,10 +43,7 @@ class DiaryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.allRecords.observe(viewLifecycleOwner) {
-            //if (it.size != viewModel.oldRecordsListSize) {
-                lifecycleScope.launchWhenCreated { viewModel.preprocessListItems() }
-               // viewModel.oldRecordsListSize = it.size
-           // }
+            viewModel.preprocessListItems()
         }
         viewModel.listItems.observe(viewLifecycleOwner) { listItems ->
             listItems?.let { adapter.submitList(listItems) }
