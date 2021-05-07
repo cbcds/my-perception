@@ -11,4 +11,8 @@ class Repository(private val diaryDao: DiaryDao, private val emotionsDao: Emotio
     suspend fun insertEmotionRecord(record: EmotionRecord) {
         diaryDao.insert(record)
     }
+
+    suspend fun deleteEmotionRecordsById(recordIds: List<Int>) {
+        diaryDao.delete(recordIds)
+    }
 }

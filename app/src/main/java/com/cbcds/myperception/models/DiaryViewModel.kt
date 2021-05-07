@@ -23,10 +23,15 @@ class DiaryViewModel(private val repository: Repository) : ViewModel() {
         _listItems.value = list
     }
 
-
     fun insert(record: EmotionRecord) {
         viewModelScope.launch {
             repository.insertEmotionRecord(record)
+        }
+    }
+
+    fun delete(recordIds: List<Int>) {
+        viewModelScope.launch {
+            repository.deleteEmotionRecordsById(recordIds)
         }
     }
 }

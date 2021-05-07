@@ -12,4 +12,9 @@
         android:title="@string/sign_out"
         app:showAsAction="never"
         android:visible="false" />
+
+    <item android:id="@+id/action_delete"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_delete_24"
+        android:visible="false" />
 </menu>

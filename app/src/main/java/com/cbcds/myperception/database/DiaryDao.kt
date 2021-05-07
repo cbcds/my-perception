@@ -12,4 +12,7 @@ interface DiaryDao {
 
     @Insert
     suspend fun insert(record: EmotionRecord)
+
+    @Query("DELETE FROM diary WHERE ID IN (:recordIds)")
+    suspend fun delete(recordIds: List<Int>)
 }

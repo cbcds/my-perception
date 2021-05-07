@@ -2,6 +2,9 @@ package com.cbcds.myperception.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.recyclerview.selection.ItemDetailsLookup
+import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,22 +16,38 @@ import com.cbcds.myperception.views.DiaryListItem
 
 class DiaryAdapter :
     ListAdapter<DiaryListItem, DiaryAdapter.DiaryItemViewHolder>(DiaryItemComparator()) {
+
+    lateinit var tracker: SelectionTracker<Long>
+
+    init {
+        setHasStableIds(true)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiaryItemViewHolder {
         return DiaryItemViewHolder.create(parent, viewType)
     }
 
     override fun onBindViewHolder(holder: DiaryItemViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        tracker.let {
+            holder.bind(getItem(position), it.isSelected(getItemId(position)))
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
         return getItem(position).type
     }
 
+    override fun getItemId(position: Int): Long {
+        return when (val item = getItem(position)) {
+            is DiaryListItem.DateItem -> super.getItemId(position)
+            is DiaryListItem.EmotionRecordItem -> item.record.id.toLong()
+        }
+    }
+
     class DiaryItemViewHolder(private var binding: ViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: DiaryListItem) {
+        fun bind(item: DiaryListItem, isSelected: Boolean) {
             when (item) {
                 is DiaryListItem.DateItem ->
                     with(binding as ItemDateBinding) {
@@ -38,7 +57,15 @@ class DiaryAdapter :
                     with(binding as ItemEmotionRecordBinding) {
                         tvEmotionName.text = item.record.name
                         tvEmotionDetails.text = item.record.details
+                        cbSelectItem.isVisible = isSelected
                     }
+            }
+        }
+
+        fun getItemDetails(): ItemDetailsLookup.ItemDetails<Long> {
+            return object : ItemDetailsLookup.ItemDetails<Long>() {
+                override fun getPosition(): Int = adapterPosition
+                override fun getSelectionKey(): Long = itemId
             }
         }
 
