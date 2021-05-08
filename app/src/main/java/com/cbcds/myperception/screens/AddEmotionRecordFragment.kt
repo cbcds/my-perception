@@ -18,7 +18,7 @@ import com.cbcds.myperception.utils.DateUtils
 import com.cbcds.myperception.utils.DateUtils.Companion.format
 import java.util.*
 
-class AddEmotionFragment : Fragment(), DatePickerDialog.OnDateSetListener {
+class AddEmotionRecordFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private lateinit var binding: FragmentAddEmotionBinding
     private val viewModel by activityViewModels<DiaryViewModel>()
 
@@ -45,7 +45,7 @@ class AddEmotionFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
         binding.tvSelectDate.text = Calendar.getInstance().format()
         binding.tvSelectDate.setOnClickListener {
-            DatePickerFragment(this).show(parentFragmentManager, "datePicker")
+            DatePickerFragment(this).show(parentFragmentManager, DatePickerFragment.TAG)
         }
 
         binding.btnSaveEmotion.setOnClickListener {

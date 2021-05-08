@@ -3,6 +3,7 @@ package com.cbcds.myperception.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.selection.ItemDetailsLookup
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.widget.DiffUtil
@@ -11,10 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.cbcds.myperception.databinding.ItemDateBinding
 import com.cbcds.myperception.databinding.ItemEmotionRecordBinding
+import com.cbcds.myperception.screens.EmotionRecordDetailsFragment
 import com.cbcds.myperception.utils.DateUtils.Companion.format
 import com.cbcds.myperception.views.DiaryListItem
 
-class DiaryAdapter :
+class DiaryAdapter(private val fragment: Fragment) :
     ListAdapter<DiaryListItem, DiaryAdapter.DiaryItemViewHolder>(DiaryItemComparator()) {
 
     lateinit var tracker: SelectionTracker<Long>
@@ -29,7 +31,7 @@ class DiaryAdapter :
 
     override fun onBindViewHolder(holder: DiaryItemViewHolder, position: Int) {
         tracker.let {
-            holder.bind(getItem(position), it.isSelected(getItemId(position)))
+            holder.bind(getItem(position), fragment, it.isSelected(getItemId(position)))
         }
     }
 
@@ -47,7 +49,7 @@ class DiaryAdapter :
     class DiaryItemViewHolder(private var binding: ViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: DiaryListItem, isSelected: Boolean) {
+        fun bind(item: DiaryListItem, fragment: Fragment, isSelected: Boolean) {
             when (item) {
                 is DiaryListItem.DateItem ->
                     with(binding as ItemDateBinding) {
@@ -58,6 +60,13 @@ class DiaryAdapter :
                         tvEmotionName.text = item.record.name
                         tvEmotionDetails.text = item.record.details
                         cbSelectItem.isVisible = isSelected
+
+                        cardEmotionRecord.setOnClickListener {
+                            EmotionRecordDetailsFragment(item.record).show(
+                                fragment.parentFragmentManager,
+                                EmotionRecordDetailsFragment.TAG
+                            )
+                        }
                     }
             }
         }

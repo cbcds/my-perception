@@ -37,7 +37,7 @@ class DiaryFragment : Fragment() {
     ): View? {
         binding = FragmentDiaryBinding.inflate(inflater, container, false)
 
-        adapter = DiaryAdapter()
+        adapter = DiaryAdapter(this)
         binding.diary.adapter = adapter
         binding.diary.setHasFixedSize(true)
 

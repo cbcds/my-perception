@@ -8,6 +8,10 @@ import java.util.*
 
 class DatePickerFragment(private val onDateSetListener: DatePickerDialog.OnDateSetListener) :
     DialogFragment() {
+    companion object {
+        const val TAG = "datePicker"
+    }
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)

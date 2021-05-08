@@ -40,7 +40,7 @@
         tools:layout="@layout/fragment_my_stats" />
     <fragment
         android:id="@+id/tab_add_emotion"
-        android:name="com.cbcds.myperception.screens.AddEmotionFragment"
+        android:name="com.cbcds.myperception.screens.AddEmotionRecordFragment"
         android:label="AddEmotionRecordFragment"
         tools:layout="@layout/fragment_add_emotion" />
 </navigation>
