@@ -15,6 +15,7 @@ import com.cbcds.myperception.R
 import com.cbcds.myperception.models.UserViewModel
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
     private val userViewModel by viewModels<UserViewModel>()
@@ -99,7 +100,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun signOut() {
-        AuthUI.getInstance().signOut(this)
+        FirebaseAuth.getInstance().signOut()
     }
 
     /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

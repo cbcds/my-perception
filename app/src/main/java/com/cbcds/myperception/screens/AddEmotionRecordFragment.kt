@@ -43,14 +43,14 @@ class AddEmotionRecordFragment : Fragment(), DatePickerDialog.OnDateSetListener 
             binding.spinnerEmotionName.adapter = adapter
         }
 
-        binding.tvSelectDate.text = Calendar.getInstance().format()
-        binding.tvSelectDate.setOnClickListener {
+        binding.spinnerSelectDate.text = Calendar.getInstance().format()
+        binding.spinnerSelectDate.setOnClickListener {
             DatePickerFragment(this).show(parentFragmentManager, DatePickerFragment.TAG)
         }
 
-        binding.btnSaveEmotion.setOnClickListener {
+        binding.btnSave.setOnClickListener {
             val name = binding.spinnerEmotionName.selectedItem.toString()
-            val date = DateUtils.stringToDate(binding.tvSelectDate.text.toString())
+            val date = DateUtils.stringToDate(binding.spinnerSelectDate.text.toString())
             val details = binding.etEmotionDetails.text.toString()
             viewModel.insert(EmotionRecord(name, date, details))
             findNavController().navigateUp()
@@ -58,6 +58,6 @@ class AddEmotionRecordFragment : Fragment(), DatePickerDialog.OnDateSetListener 
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        binding.tvSelectDate.text = DateUtils.dateToString(year, month, dayOfMonth)
+        binding.spinnerSelectDate.text = DateUtils.dateToString(year, month, dayOfMonth)
     }
 }

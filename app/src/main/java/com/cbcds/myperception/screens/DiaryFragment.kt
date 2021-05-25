@@ -72,6 +72,7 @@ class DiaryFragment : Fragment() {
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         menu.findItem(R.id.action_delete).isVisible = tracker.hasSelection()
+        menu.findItem(R.id.action_show_dictionary).isVisible = true
         super.onPrepareOptionsMenu(menu)
     }
 
@@ -80,6 +81,11 @@ class DiaryFragment : Fragment() {
             R.id.action_delete -> {
                 viewModel.delete(tracker.selection.map { it.toInt() }.toList())
                 tracker.clearSelection()
+                true
+            }
+            R.id.action_show_dictionary -> {
+                findNavController().navigate(R.id.tab_dictionary)
+                item.isVisible = false
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -29,6 +29,12 @@ class DiaryViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
+    fun update(record: EmotionRecord) {
+        viewModelScope.launch {
+            repository.updateEmotionRecord(record)
+        }
+    }
+
     fun delete(recordIds: List<Int>) {
         viewModelScope.launch {
             repository.deleteEmotionRecordsById(recordIds)

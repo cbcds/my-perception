@@ -1,13 +1,18 @@
 package com.cbcds.myperception.screens
 
+import android.content.Context
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import com.cbcds.myperception.database.EmotionRecord
 import com.cbcds.myperception.databinding.FragmentEmotionRecordDetailsBinding
+import com.cbcds.myperception.models.DiaryViewModel
 import com.cbcds.myperception.utils.DateUtils.Companion.format
 
 class EmotionRecordDetailsFragment(private val record: EmotionRecord) : DialogFragment() {
@@ -18,6 +23,7 @@ class EmotionRecordDetailsFragment(private val record: EmotionRecord) : DialogFr
     }
 
     private lateinit var binding: FragmentEmotionRecordDetailsBinding
+    private val viewModel by activityViewModels<DiaryViewModel>()
 
     override fun onResume() {
         super.onResume()
@@ -30,15 +36,35 @@ class EmotionRecordDetailsFragment(private val record: EmotionRecord) : DialogFr
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentEmotionRecordDetailsBinding.inflate(inflater, container, false)
+        binding.tvEmotionName.text = record.name
+        binding.tvDate.text = record.date.format()
+        binding.etEmotionDetails.setText(record.details)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvEmotionName.text = record.name
-        binding.tvDate.text = record.date.format()
-        binding.etEmotionDetails.setText(record.details)
+        binding.btnEdit.setOnClickListener { btnEdit ->
+            binding.btnSave.visibility = Button.VISIBLE
+            btnEdit.visibility = Button.INVISIBLE
+            binding.etEmotionDetails.isEnabled = true
+            binding.etEmotionDetails.requestFocus()
+            binding.etEmotionDetails.setSelection(binding.etEmotionDetails.text.toString().length)
+            showKeyboard()
+        }
+
+        binding.btnSave.setOnClickListener { btnSave ->
+            record.details = binding.etEmotionDetails.text.toString()
+            viewModel.update(record)
+
+            binding.btnEdit.visibility = Button.VISIBLE
+            btnSave.visibility = Button.INVISIBLE
+            binding.etEmotionDetails.isEnabled = false
+        }
+
+        binding.btnBack.setOnClickListener { dismiss() }
     }
 
     private fun setWindowParams() {
@@ -47,5 +73,11 @@ class EmotionRecordDetailsFragment(private val record: EmotionRecord) : DialogFr
             val height = (metrics.heightPixels * LAYOUT_WEIGHT).toInt()
             dialog?.window?.setLayout(width, height)
         }
+    }
+
+    private fun showKeyboard() {
+        val inputMethodManager =
+            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
     }
 }

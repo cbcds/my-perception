@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_tab_diary_to_tab_add_emotion"
             app:destination="@id/tab_add_emotion" />
+        <action
+            android:id="@+id/action_tab_diary_to_tab_dictionary"
+            app:destination="@id/tab_dictionary" />
     </fragment>
     <fragment
         android:id="@+id/tab_global_stats"
@@ -43,4 +46,9 @@
         android:name="com.cbcds.myperception.screens.AddEmotionRecordFragment"
         android:label="AddEmotionRecordFragment"
         tools:layout="@layout/fragment_add_emotion" />
+    <fragment
+        android:id="@+id/tab_dictionary"
+        android:name="com.cbcds.myperception.screens.DictionaryFragment"
+        android:label="fragment_dictionary"
+        tools:layout="@layout/fragment_dictionary" />
 </navigation>
