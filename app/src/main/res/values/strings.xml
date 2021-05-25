@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">My Perception</string>
 
+    <string name="save">Save</string>
+    <string name="ok">OK</string>
+
     <!-- Tab labels -->
     <string name="global_stats">Global stats</string>
     <string name="my_stats">My stats</string>
@@ -22,7 +25,6 @@
 
     <!-- AddEmotionRecordFragment -->
     <string name="action_bar_title_new_emotion">New emotion</string>
-    <string name="save">Save</string>
     <string name="hint_date_picker">Select a date</string>
     <string name="hint_emotion_details">Enter some details…</string>
     <string-array name="emotions_array">

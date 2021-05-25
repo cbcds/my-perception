@@ -47,6 +47,8 @@ class DiaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.allEmotions.observe(viewLifecycleOwner) {}
+
         tracker = buildDiarySelectionTracker(binding.diary)
         adapter.tracker = tracker
         tracker.addObserver(object : SelectionTracker.SelectionObserver<Long>() {
@@ -72,7 +74,7 @@ class DiaryFragment : Fragment() {
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         menu.findItem(R.id.action_delete).isVisible = tracker.hasSelection()
-        menu.findItem(R.id.action_show_dictionary).isVisible = true
+        menu.findItem(R.id.action_show_dictionary).isVisible = !tracker.hasSelection()
         super.onPrepareOptionsMenu(menu)
     }
 

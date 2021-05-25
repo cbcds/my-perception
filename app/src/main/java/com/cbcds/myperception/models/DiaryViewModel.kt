@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 
 class DiaryViewModel(private val repository: Repository) : ViewModel() {
     val allRecords = repository.allEmotionRecords.asLiveData()
+    val allEmotions = repository.allEmotions.asLiveData()
 
     private val _listItems = MutableLiveData<List<DiaryListItem>>()
     val listItems: LiveData<List<DiaryListItem>> = _listItems
