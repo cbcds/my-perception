@@ -27,32 +27,7 @@
     <string name="action_bar_title_new_emotion">New emotion</string>
     <string name="hint_date_picker">Select a date</string>
     <string name="hint_emotion_details">Enter some details…</string>
-    <string-array name="emotions_array">
-        <item>Sadness</item>
-        <item>Happiness</item>
-        <item>Fear</item>
-        <item>Shame</item>
-        <item>Anger</item>
-        <item>Boredom</item>
-        <item>Interest</item>
-        <item>Admiration</item>
-        <item>Resentment</item>
-        <item>Excitement</item>
-        <item>Worry</item>
-        <item>Jealousy</item>
-        <item>Pleasure</item>
-        <item>Humiliation</item>
-        <item>Love</item>
-        <item>Pride</item>
-        <item>Gratitude</item>
-        <item>Calmness</item>
-        <item>Confusion</item>
-        <item>Disappointment</item>
-        <item>Helplessness</item>
-        <item>Despair</item>
-        <item>Hope</item>
-        <item>Trust</item>
-    </string-array>
+    <string name="hint_emotion_level">Emotion level:</string>
 
     <!-- MyStatsFragment -->
     <string name="action_bar_title_my_stats">My statistics</string>

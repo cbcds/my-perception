@@ -41,6 +41,11 @@ class DiaryViewModel(private val repository: Repository) : ViewModel() {
             repository.deleteEmotionRecordsById(recordIds)
         }
     }
+
+    fun calculateEmotionLevel(name: String, progress: Int): Int {
+        val type = allEmotions.value!!.first { it.name == name }.type
+        return if (type == "N") -1 * (progress + 1) else progress + 1
+    }
 }
 
 class DiaryViewModelFactory(private val repository: Repository) : ViewModelProvider.Factory {

@@ -8,7 +8,8 @@ import java.util.*
 data class EmotionRecord(
     var name: String,
     var date: Date,
-    var details: String
+    var details: String,
+    var level: Int
 ) {
     @PrimaryKey(autoGenerate = true)
     var id = 0

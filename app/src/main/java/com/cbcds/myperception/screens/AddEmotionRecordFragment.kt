@@ -52,7 +52,8 @@ class AddEmotionRecordFragment : Fragment(), DatePickerDialog.OnDateSetListener 
             val name = binding.spinnerEmotionName.text.toString()
             val date = DateUtils.stringToDate(binding.spinnerSelectDate.text.toString())
             val details = binding.etEmotionDetails.text.toString()
-            viewModel.insert(EmotionRecord(name, date, details))
+            val level = viewModel.calculateEmotionLevel(name, binding.seekbarLevel.progress)
+            viewModel.insert(EmotionRecord(name, date, details, level))
             findNavController().navigateUp()
         }
     }

@@ -6,5 +6,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "emotions")
 data class Emotion(
     @PrimaryKey var name: String,
-    var description: String
+    var description: String,
+    var type: String
 )

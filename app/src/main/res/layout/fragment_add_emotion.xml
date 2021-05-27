@@ -36,7 +36,8 @@
         android:maxLength="1000"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@id/btn_save"
-        app:layout_constraintTop_toBottomOf="@id/spinner_emotion_name" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_emotion_level"
+        tools:layout_editor_absoluteX="8dp" />
 
     <Button
         android:id="@+id/btn_save"
@@ -47,4 +48,28 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/layout_emotion_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_emotion_name">
+
+        <TextView
+            android:id="@+id/tv_emotion_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hint_emotion_level" />
+
+        <SeekBar
+            android:id="@+id/sb_level"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:max="4"
+            android:progress="0" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
