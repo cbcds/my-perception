@@ -6,7 +6,7 @@ import androidx.lifecycle.asLiveData
 import com.cbcds.myperception.Repository
 
 class DictionaryViewModel(private val repository: Repository) : ViewModel() {
-    val allEmotions = repository.allEmotions.asLiveData()
+    val allEmotions = repository.getAllEmotions().asLiveData()
 }
 
 class DictionaryViewModelFactory(private val repository: Repository) : ViewModelProvider.Factory {

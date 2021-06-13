@@ -13,7 +13,7 @@ import androidx.fragment.app.activityViewModels
 import com.cbcds.myperception.database.EmotionRecord
 import com.cbcds.myperception.databinding.FragmentEmotionRecordDetailsBinding
 import com.cbcds.myperception.models.DiaryViewModel
-import com.cbcds.myperception.utils.DateUtils.Companion.format
+import com.cbcds.myperception.utils.DateUtils
 
 class EmotionRecordDetailsFragment(private val record: EmotionRecord) : DialogFragment() {
     companion object {
@@ -37,7 +37,7 @@ class EmotionRecordDetailsFragment(private val record: EmotionRecord) : DialogFr
     ): View? {
         binding = FragmentEmotionRecordDetailsBinding.inflate(inflater, container, false)
         binding.tvEmotionName.text = record.name
-        binding.tvDate.text = record.date.format()
+        binding.tvDate.text = DateUtils.dateToString(record.date)
         binding.etEmotionDetails.setText(record.details)
 
         return binding.root

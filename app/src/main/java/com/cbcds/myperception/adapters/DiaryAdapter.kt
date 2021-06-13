@@ -13,7 +13,7 @@ import androidx.viewbinding.ViewBinding
 import com.cbcds.myperception.databinding.ItemDateBinding
 import com.cbcds.myperception.databinding.ItemEmotionRecordBinding
 import com.cbcds.myperception.screens.EmotionRecordDetailsFragment
-import com.cbcds.myperception.utils.DateUtils.Companion.format
+import com.cbcds.myperception.utils.DateUtils
 import com.cbcds.myperception.views.DiaryListItem
 
 class DiaryAdapter(private val fragment: Fragment) :
@@ -53,7 +53,7 @@ class DiaryAdapter(private val fragment: Fragment) :
             when (item) {
                 is DiaryListItem.DateItem ->
                     with(binding as ItemDateBinding) {
-                        tvDate.text = item.date.format()
+                        tvDate.text = DateUtils.dateToString(item.date)
                     }
                 is DiaryListItem.EmotionRecordItem ->
                     with(binding as ItemEmotionRecordBinding) {

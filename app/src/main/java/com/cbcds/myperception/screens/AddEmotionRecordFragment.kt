@@ -2,6 +2,7 @@ package com.cbcds.myperception.screens
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,6 @@ import com.cbcds.myperception.database.EmotionRecord
 import com.cbcds.myperception.databinding.FragmentAddEmotionBinding
 import com.cbcds.myperception.models.DiaryViewModel
 import com.cbcds.myperception.utils.DateUtils
-import com.cbcds.myperception.utils.DateUtils.Companion.format
 import java.util.*
 
 class AddEmotionRecordFragment : Fragment(), DatePickerDialog.OnDateSetListener {
@@ -43,7 +43,7 @@ class AddEmotionRecordFragment : Fragment(), DatePickerDialog.OnDateSetListener 
             SelectEmotionFragment().show(parentFragmentManager, SelectEmotionFragment.TAG)
         }
 
-        binding.spinnerSelectDate.text = Calendar.getInstance().format()
+        binding.spinnerSelectDate.text = DateUtils.dateToString(Calendar.getInstance().time)
         binding.spinnerSelectDate.setOnClickListener {
             DatePickerFragment(this).show(parentFragmentManager, DatePickerFragment.TAG)
         }
@@ -52,13 +52,13 @@ class AddEmotionRecordFragment : Fragment(), DatePickerDialog.OnDateSetListener 
             val name = binding.spinnerEmotionName.text.toString()
             val date = DateUtils.stringToDate(binding.spinnerSelectDate.text.toString())
             val details = binding.etEmotionDetails.text.toString()
-            val level = viewModel.calculateEmotionLevel(name, binding.seekbarLevel.progress)
+            val level = viewModel.calculateEmotionLevel(name, binding.sbLevel.progress)
             viewModel.insert(EmotionRecord(name, date, details, level))
             findNavController().navigateUp()
         }
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        binding.spinnerSelectDate.text = DateUtils.dateToString(year, month, dayOfMonth)
+        binding.spinnerSelectDate.text = DateUtils.dateToString(year, month + 1, dayOfMonth)
     }
 }

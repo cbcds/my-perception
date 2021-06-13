@@ -35,7 +35,7 @@ class DiaryItemKeyProvider(private val recyclerView: RecyclerView) :
 
 fun buildDiarySelectionTracker(recyclerView: RecyclerView): SelectionTracker<Long> {
     return SelectionTracker.Builder(
-        "diary-item-selection",
+        "diaryItemSelection",
         recyclerView,
         DiaryItemKeyProvider(recyclerView),
         DiaryItemLookup(recyclerView),
