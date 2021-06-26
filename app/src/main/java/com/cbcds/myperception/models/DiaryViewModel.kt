@@ -4,7 +4,6 @@ import androidx.lifecycle.*
 import com.cbcds.myperception.Repository
 import com.cbcds.myperception.database.Emotion.Companion.TYPE_NEGATIVE
 import com.cbcds.myperception.database.EmotionRecord
-import com.cbcds.myperception.utils.DateUtils
 import com.cbcds.myperception.views.DiaryListItem
 import kotlinx.coroutines.launch
 
@@ -42,22 +41,6 @@ class DiaryViewModel(private val repository: Repository) : ViewModel() {
         viewModelScope.launch {
             repository.deleteEmotionRecordsById(recordIds)
         }
-    }
-
-    fun getChartData(): Array<Any>? {
-        return if (allRecords.value != null && allRecords.value!!.isNotEmpty()) {
-            val records = allRecords.value!!.reversed()
-            val chartData = Array<Any>(records.size + 1) { }
-            chartData[0] = arrayOf("", 0)
-            var sum = 0
-            for (i in records.indices) {
-                val name = records[i].name
-                val date = DateUtils.dateToString(records[i].date)
-                sum += records[i].level
-                chartData[i + 1] = arrayOf("$date $name", sum)
-            }
-            return chartData
-        } else null
     }
 
     fun calculateEmotionLevel(name: String, progress: Int): Int {

@@ -5,11 +5,15 @@ import com.cbcds.myperception.database.Emotion
 import com.cbcds.myperception.database.EmotionRecord
 import com.cbcds.myperception.database.EmotionsDao
 import kotlinx.coroutines.flow.Flow
+import java.util.*
 
 class Repository(private val diaryDao: DiaryDao, private val emotionsDao: EmotionsDao) {
     fun getAllEmotions(): Flow<List<Emotion>> = emotionsDao.getAll()
 
     fun getAllEmotionRecords(): Flow<List<EmotionRecord>> = diaryDao.getAll()
+
+    fun getEmotionRecordsByDate(startDate: Date, endDate: Date): Flow<List<EmotionRecord>> =
+        diaryDao.getByDate(startDate, endDate)
 
     suspend fun insertEmotionRecord(record: EmotionRecord) = diaryDao.insert(record)
 

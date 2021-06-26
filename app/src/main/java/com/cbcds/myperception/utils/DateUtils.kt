@@ -22,6 +22,16 @@ class DateUtils {
             val localDate = LocalDate.from(
                 DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).parse(dateString)
             )
+            return localDateToDate(localDate)
+        }
+
+        fun getTimePeriodBoundaries(daysNum: Long): Pair<Date, Date> {
+            val end = LocalDate.now()
+            val begin = end.minusDays(daysNum)
+            return localDateToDate(begin) to localDateToDate(end)
+        }
+
+        private fun localDateToDate(localDate: LocalDate): Date {
             return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant())
         }
     }

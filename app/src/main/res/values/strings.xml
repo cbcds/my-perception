@@ -31,4 +31,9 @@
 
     <!-- MyStatsFragment -->
     <string name="action_bar_title_my_stats">My statistics</string>
+    <string name="no_data">No data for the selected period</string>
+    <string-array name="array_time_period">
+        <item>Last 7 days</item>
+        <item>Last 30 days</item>
+    </string-array>
 </resources>
