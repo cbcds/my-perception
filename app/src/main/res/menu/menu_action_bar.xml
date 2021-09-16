@@ -2,18 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_sign_in"
-        android:title="@string/sign_in"
-        android:visible="true"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_sign_out"
-        android:title="@string/sign_out"
-        android:visible="false"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/action_delete"
         android:icon="@drawable/ic_baseline_delete_24"
         android:visible="false"
@@ -24,4 +12,25 @@
         android:icon="@drawable/ic_baseline_menu_book_24"
         android:visible="false"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_sync"
+        android:icon="@drawable/ic_baseline_sync_24"
+        android:title="@string/sync"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_sign_in"
+        android:icon="@drawable/ic_sign_in"
+        android:title="@string/sign_in"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_sign_out"
+        android:icon="@drawable/ic_sign_out"
+        android:title="@string/sign_out"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
 </menu>

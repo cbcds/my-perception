@@ -3,7 +3,7 @@ package com.cbcds.myperception.models
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 
-class UserViewModel : ViewModel() {
+open class UserViewModel : ViewModel() {
     enum class AuthState {
         AUTHENTICATED, UNAUTHENTICATED
     }

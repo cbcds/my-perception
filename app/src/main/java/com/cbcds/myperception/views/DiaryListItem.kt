@@ -1,6 +1,6 @@
 package com.cbcds.myperception.views
 
-import com.cbcds.myperception.database.EmotionRecord
+import com.cbcds.myperception.database.local.EmotionRecord
 import java.util.*
 
 sealed class DiaryListItem(val type: Int) {

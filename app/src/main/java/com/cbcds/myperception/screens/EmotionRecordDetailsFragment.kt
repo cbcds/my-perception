@@ -10,7 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import com.cbcds.myperception.database.EmotionRecord
+import com.cbcds.myperception.database.local.EmotionRecord
 import com.cbcds.myperception.databinding.FragmentEmotionRecordDetailsBinding
 import com.cbcds.myperception.models.DiaryViewModel
 import com.cbcds.myperception.utils.DateUtils
@@ -18,12 +18,11 @@ import com.cbcds.myperception.utils.DateUtils
 class EmotionRecordDetailsFragment(private val record: EmotionRecord) : DialogFragment() {
     companion object {
         const val TAG = "emotionRecordDetails"
-
         private const val LAYOUT_WEIGHT = 0.75
     }
 
     private lateinit var binding: FragmentEmotionRecordDetailsBinding
-    private val viewModel by activityViewModels<DiaryViewModel>()
+    private val diaryViewModel by activityViewModels<DiaryViewModel>()
 
     override fun onResume() {
         super.onResume()
@@ -57,7 +56,7 @@ class EmotionRecordDetailsFragment(private val record: EmotionRecord) : DialogFr
 
         binding.btnSave.setOnClickListener { btnSave ->
             record.details = binding.etEmotionDetails.text.toString()
-            viewModel.update(record)
+            diaryViewModel.update(record)
 
             binding.btnEdit.visibility = Button.VISIBLE
             btnSave.visibility = Button.INVISIBLE

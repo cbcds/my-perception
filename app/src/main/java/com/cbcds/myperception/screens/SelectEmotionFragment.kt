@@ -20,12 +20,11 @@ class SelectEmotionFragment : DialogFragment() {
     companion object {
         const val TAG = "selectEmotion"
         const val REQUEST_KEY = "EmotionName"
-
         private const val LAYOUT_WEIGHT = 0.75
     }
 
     private lateinit var binding: FragmentSelectEmotionBinding
-    private val viewModel by activityViewModels<DiaryViewModel>()
+    private val diaryViewModel by activityViewModels<DiaryViewModel>()
 
     override fun onResume() {
         super.onResume()
@@ -56,7 +55,7 @@ class SelectEmotionFragment : DialogFragment() {
     }
 
     private fun inflateEmotionsViews() {
-        for (emotion in viewModel.allEmotions.value!!) {
+        for (emotion in diaryViewModel.allEmotions.value!!) {
             val chip = layoutInflater.inflate(
                 R.layout.chip_emotion,
                 binding.groupEmotions,

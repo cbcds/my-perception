@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 
 class MyStatsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var binding: FragmentMyStatsBinding
-    private val viewModel by activityViewModels<MyStatsViewModel> {
+    private val myStatsViewModel by activityViewModels<MyStatsViewModel> {
         MyStatsViewModelFactory((activity?.application as EmotionsApplication).repository)
     }
 
@@ -47,7 +47,7 @@ class MyStatsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         updateChartData()
 
-        viewModel.data.observe(viewLifecycleOwner) {
+        myStatsViewModel.data.observe(viewLifecycleOwner) {
             updateChartData()
         }
 
@@ -56,7 +56,7 @@ class MyStatsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private fun updateChartData() {
         GlobalScope.launch(Dispatchers.Main) {
-            val chartData: Array<Any>? = viewModel.getChartDataAsync().await()
+            val chartData: Array<Any>? = myStatsViewModel.getChartDataAsync().await()
             if (chartData != null) {
                 chartModel.series(
                     arrayOf(
@@ -95,7 +95,7 @@ class MyStatsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        viewModel.timePeriod =
+        myStatsViewModel.timePeriod =
             if (position == 0) MyStatsViewModel.TimePeriod.WEEK else MyStatsViewModel.TimePeriod.MONTH
     }
 

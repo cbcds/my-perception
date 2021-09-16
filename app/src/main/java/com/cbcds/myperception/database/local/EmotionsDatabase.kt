@@ -1,4 +1,4 @@
-package com.cbcds.myperception.database
+package com.cbcds.myperception.database.local
 
 import android.content.Context
 import androidx.room.Database

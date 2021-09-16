@@ -32,6 +32,10 @@ class MainActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setContentView(R.layout.activity_main)
 
+        userViewModel.authState.observe(this) {
+            invalidateOptionsMenu()
+        }
+
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
@@ -102,19 +106,4 @@ class MainActivity : AppCompatActivity() {
     private fun signOut() {
         FirebaseAuth.getInstance().signOut()
     }
-
-    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        when (requestCode) {
-            RC_SIGN_IN -> {
-                val response = IdpResponse.fromResultIntent(data)
-                if (resultCode == Activity.RESULT_OK) {
-                    Toast.makeText(this, "Signed in", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, response.toString(), Toast.LENGTH_LONG).show()
-                }
-            }
-        }
-    }*/
 }

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.cbcds.myperception.Repository
-import com.cbcds.myperception.database.EmotionRecord
+import com.cbcds.myperception.database.local.EmotionRecord
 import com.cbcds.myperception.utils.DateUtils
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
@@ -61,7 +61,7 @@ class MyStatsViewModel(private val repository: Repository) : ViewModel() {
 }
 
 class MyStatsViewModelFactory(private val repository: Repository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MyStatsViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return MyStatsViewModel(repository) as T

@@ -16,7 +16,7 @@ class DictionaryFragment : Fragment() {
     private lateinit var binding: FragmentDictionaryBinding
     private lateinit var adapter: DictionaryAdapter
 
-    private val viewModel by activityViewModels<DictionaryViewModel> {
+    private val dictionaryViewModel by activityViewModels<DictionaryViewModel> {
         DictionaryViewModelFactory((activity?.application as EmotionsApplication).repository)
     }
 
@@ -37,7 +37,7 @@ class DictionaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.allEmotions.observe(viewLifecycleOwner) { emotionItems ->
+        dictionaryViewModel.allEmotions.observe(viewLifecycleOwner) { emotionItems ->
             adapter.submitList(emotionItems)
         }
     }

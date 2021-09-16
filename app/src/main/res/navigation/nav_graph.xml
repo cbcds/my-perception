@@ -10,11 +10,7 @@
         android:id="@+id/tab_auth"
         android:name="com.cbcds.myperception.screens.AuthFragment"
         android:label="@string/action_bar_title_auth"
-        tools:layout="@layout/fragment_auth">
-        <action
-            android:id="@+id/action_tab_auth_to_tab_global_stats"
-            app:destination="@id/tab_global_stats" />
-    </fragment>
+        tools:layout="@layout/fragment_auth"/>
     <fragment
         android:id="@+id/tab_diary"
         android:name="com.cbcds.myperception.screens.DiaryFragment"
@@ -26,6 +22,12 @@
         <action
             android:id="@+id/action_tab_diary_to_tab_dictionary"
             app:destination="@id/tab_dictionary" />
+        <action
+            android:id="@+id/action_tab_diary_to_tab_emotion_record_details"
+            app:destination="@id/tab_emotion_record_details" />
+        <action
+            android:id="@+id/action_tab_diary_to_tab_auth"
+            app:destination="@id/tab_auth" />
     </fragment>
     <fragment
         android:id="@+id/tab_global_stats"
@@ -40,15 +42,33 @@
         android:id="@+id/tab_my_stats"
         android:name="com.cbcds.myperception.screens.MyStatsFragment"
         android:label="@string/action_bar_title_my_stats"
-        tools:layout="@layout/fragment_my_stats" />
+        tools:layout="@layout/fragment_my_stats" >
+        <action
+            android:id="@+id/action_tab_my_stats_to_tab_auth"
+            app:destination="@id/tab_auth" />
+    </fragment>
     <fragment
         android:id="@+id/tab_add_emotion"
         android:name="com.cbcds.myperception.screens.AddEmotionRecordFragment"
         android:label="AddEmotionRecordFragment"
-        tools:layout="@layout/fragment_add_emotion" />
+        tools:layout="@layout/fragment_add_emotion" >
+        <action
+            android:id="@+id/action_tab_add_emotion_to_selectEmotionFragment"
+            app:destination="@id/selectEmotionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tab_dictionary"
         android:name="com.cbcds.myperception.screens.DictionaryFragment"
         android:label="fragment_dictionary"
         tools:layout="@layout/fragment_dictionary" />
+    <dialog
+        android:id="@+id/selectEmotionFragment"
+        android:name="com.cbcds.myperception.screens.SelectEmotionFragment"
+        android:label="fragment_select_emotion"
+        tools:layout="@layout/fragment_select_emotion" />
+    <dialog
+        android:id="@+id/tab_emotion_record_details"
+        android:name="com.cbcds.myperception.screens.EmotionRecordDetailsFragment"
+        android:label="fragment_emotion_record_details"
+        tools:layout="@layout/fragment_emotion_record_details" />
 </navigation>

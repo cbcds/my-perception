@@ -2,12 +2,12 @@ package com.cbcds.myperception.models
 
 import androidx.lifecycle.*
 import com.cbcds.myperception.Repository
-import com.cbcds.myperception.database.Emotion.Companion.TYPE_NEGATIVE
-import com.cbcds.myperception.database.EmotionRecord
+import com.cbcds.myperception.database.local.Emotion.Companion.TYPE_NEGATIVE
+import com.cbcds.myperception.database.local.EmotionRecord
 import com.cbcds.myperception.views.DiaryListItem
 import kotlinx.coroutines.launch
 
-class DiaryViewModel(private val repository: Repository) : ViewModel() {
+class DiaryViewModel(private val repository: Repository) : UserViewModel() {
     val allRecords = repository.getAllEmotionRecords().asLiveData()
     val allEmotions = repository.getAllEmotions().asLiveData()
 
@@ -50,7 +50,7 @@ class DiaryViewModel(private val repository: Repository) : ViewModel() {
 }
 
 class DiaryViewModelFactory(private val repository: Repository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DiaryViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return DiaryViewModel(repository) as T

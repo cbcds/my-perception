@@ -12,6 +12,7 @@
     <!-- Authorization -->
     <string name="sign_in">Sign in</string>
     <string name="sign_out">Sign out</string>
+    <string name="sync">Sync</string>
 
     <!-- AuthFragment -->
     <string name="action_bar_title_auth">Authorization</string>
@@ -28,6 +29,10 @@
     <string name="hint_date_picker">Select a date</string>
     <string name="hint_emotion_details">Enter some details…</string>
     <string name="hint_emotion_level">Emotion level:</string>
+
+    <!-- SyncFragment -->
+    <string name="last_sync_time">The last synchronization was %1$s</string>
+    <string name="synchronize">Synchronize</string>
 
     <!-- MyStatsFragment -->
     <string name="action_bar_title_my_stats">My statistics</string>

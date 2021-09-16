@@ -30,7 +30,7 @@ class AuthFragment : Fragment() {
         binding.btnSignIn.setOnClickListener { (activity as MainActivity).launchSignInFlow() }
         userViewModel.authState.observe(viewLifecycleOwner) { authState ->
             if (authState == UserViewModel.AuthState.AUTHENTICATED) {
-                findNavController().navigate(R.id.action_tab_auth_to_tab_global_stats)
+                findNavController().navigate(R.id.tab_global_stats)
             }
         }
     }

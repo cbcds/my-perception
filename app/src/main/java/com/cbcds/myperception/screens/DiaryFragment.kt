@@ -20,8 +20,7 @@ class DiaryFragment : Fragment() {
     private lateinit var adapter: DiaryAdapter
     private lateinit var tracker: SelectionTracker<Long>
 
-    private val userViewModel by activityViewModels<UserViewModel>()
-    private val viewModel by activityViewModels<DiaryViewModel> {
+    private val diaryViewModel by activityViewModels<DiaryViewModel> {
         DiaryViewModelFactory((activity?.application as EmotionsApplication).repository)
     }
 
@@ -47,7 +46,7 @@ class DiaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.allEmotions.observe(viewLifecycleOwner) {}
+        diaryViewModel.allEmotions.observe(viewLifecycleOwner) {}
 
         tracker = buildDiarySelectionTracker(binding.diary)
         adapter.tracker = tracker
@@ -60,10 +59,10 @@ class DiaryFragment : Fragment() {
             }
         })
 
-        viewModel.allRecords.observe(viewLifecycleOwner) {
-            viewModel.preprocessListItems()
+        diaryViewModel.allRecords.observe(viewLifecycleOwner) {
+            diaryViewModel.preprocessListItems()
         }
-        viewModel.listItems.observe(viewLifecycleOwner) { listItems ->
+        diaryViewModel.listItems.observe(viewLifecycleOwner) { listItems ->
             listItems?.let { adapter.submitList(listItems) }
         }
 
@@ -75,19 +74,25 @@ class DiaryFragment : Fragment() {
     override fun onPrepareOptionsMenu(menu: Menu) {
         menu.findItem(R.id.action_delete).isVisible = tracker.hasSelection()
         menu.findItem(R.id.action_show_dictionary).isVisible = !tracker.hasSelection()
+        menu.findItem(R.id.action_sync).isVisible =
+            diaryViewModel.authState.value == UserViewModel.AuthState.AUTHENTICATED
         super.onPrepareOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_delete -> {
-                viewModel.delete(tracker.selection.map { it.toInt() }.toList())
+                diaryViewModel.delete(tracker.selection.map { it.toInt() })
                 tracker.clearSelection()
                 true
             }
             R.id.action_show_dictionary -> {
                 findNavController().navigate(R.id.tab_dictionary)
                 item.isVisible = false
+                true
+            }
+            R.id.action_sync -> {
+
                 true
             }
             else -> super.onOptionsItemSelected(item)

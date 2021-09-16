@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.cbcds.myperception.R
-import com.cbcds.myperception.database.Emotion
+import com.cbcds.myperception.database.local.Emotion
 import com.cbcds.myperception.databinding.ItemDictionaryBinding
 
 class DictionaryAdapter(private val context: Context) :

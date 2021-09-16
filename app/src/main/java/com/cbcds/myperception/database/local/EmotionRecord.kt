@@ -1,4 +1,4 @@
-package com.cbcds.myperception.database
+package com.cbcds.myperception.database.local
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

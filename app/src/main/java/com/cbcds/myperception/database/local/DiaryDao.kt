@@ -1,4 +1,5 @@
-package com.cbcds.myperception.database
+
+package com.cbcds.myperception.database.local
 
 import androidx.room.Dao
 import androidx.room.Insert
